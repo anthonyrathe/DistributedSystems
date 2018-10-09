@@ -7,6 +7,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * A Car Rental Company Interface, extending the Remote class.
+ */
 public interface CarRentalCompanyInterface extends Remote{
 	
 	String getName() throws RemoteException;
@@ -23,8 +26,5 @@ public interface CarRentalCompanyInterface extends Remote{
 	Quote createQuote(ReservationConstraints constraints, String client) throws RemoteException, ReservationException;
 	Reservation confirmQuote(Quote quote) throws RemoteException, ReservationException;
 	void cancelReservation(Reservation res) throws RemoteException;
-	
-	//@Override
-	//String toString();
 	
 }

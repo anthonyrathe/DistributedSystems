@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.List;
 
 import rental.Car;
-import rental.CarRentalCompany;
 import rental.CarRentalCompanyInterface;
 import rental.Quote;
 import rental.Reservation;
@@ -35,19 +34,15 @@ public class Client extends AbstractTestBooking {
 	
 	public Client(String scriptFile, String carRentalCompanyName) {
 		super(scriptFile);
-		// TODO Auto-generated method stub
 		
 		try {
 			System.setSecurityManager(null);
             Registry registry = LocateRegistry.getRegistry(null);
             rentalCompanyStub = (CarRentalCompanyInterface) registry.lookup("CarRentalCompanyInterface");
-            String response = rentalCompanyStub.getName();
-            System.out.println("response: " + response);
         } catch (Exception e) {
-            System.err.println("Client exception: " + e.toString());
+            System.err.println("Exception on client side: " + e.toString());
             e.printStackTrace();
         }
-		//throw new UnsupportedOperationException("TODO");
 	}
 	
 	/**
@@ -63,9 +58,9 @@ public class Client extends AbstractTestBooking {
 	 */
 	@Override
 	protected void checkForAvailableCarTypes(Date start, Date end) throws Exception {
-		// TODO Auto-generated method stub
-		//throw new UnsupportedOperationException("TODO");
+
 		rentalCompanyStub.getAvailableCarTypes(start, end);
+		
 	}
 
 	/**
@@ -89,10 +84,9 @@ public class Client extends AbstractTestBooking {
 	@Override
 	protected Quote createQuote(String clientName, Date start, Date end,
 			String carType, String region) throws Exception {
-		// TODO Auto-generated method stub
-		//throw new UnsupportedOperationException("TODO");
 		
 		return rentalCompanyStub.createQuote(new ReservationConstraints(start, end, carType, region), clientName);
+		
 	}
 
 	/**
@@ -107,10 +101,9 @@ public class Client extends AbstractTestBooking {
 	 */
 	@Override
 	protected Reservation confirmQuote(Quote quote) throws Exception {
-		// TODO Auto-generated method stub
-		//throw new UnsupportedOperationException("TODO");
 		
 		return rentalCompanyStub.confirmQuote(quote);
+		
 	}
 	
 	/**
@@ -125,8 +118,7 @@ public class Client extends AbstractTestBooking {
 	 */
 	@Override
 	protected List<Reservation> getReservationsByRenter(String clientName) throws Exception {
-		// TODO Auto-generated method stub
-		//throw new UnsupportedOperationException("TODO");
+
 		List<Car> cars = rentalCompanyStub.getAllCars();
 		List<Reservation> reservationsByRenter = new ArrayList<Reservation>();
 		for (Car car : cars){
@@ -138,6 +130,7 @@ public class Client extends AbstractTestBooking {
 		}
 		
 		return reservationsByRenter;
+		
 	}
 
 	/**
@@ -152,8 +145,7 @@ public class Client extends AbstractTestBooking {
 	 */
 	@Override
 	protected int getNumberOfReservationsForCarType(String carType) throws Exception {
-		// TODO Auto-generated method stub
-		//throw new UnsupportedOperationException("TODO");
+
 		List<Car> cars = rentalCompanyStub.getAllCars();
 		int numberOfReservations = 0;
 		for (Car car : cars){
@@ -163,5 +155,6 @@ public class Client extends AbstractTestBooking {
 		}
 		
 		return numberOfReservations;
+		
 	}
 }

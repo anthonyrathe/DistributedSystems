@@ -1,7 +1,6 @@
 package rental;
 import java.rmi.registry.Registry;
 import java.rmi.registry.LocateRegistry;
-import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import java.io.BufferedReader;
@@ -11,32 +10,27 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
-import java.rmi.Remote;
 
 
 public class RentalServer{
 	
 	public static void main(String[] args) throws ReservationException,
 			NumberFormatException, IOException {
+		
 		CrcData data  = loadData("hertz.csv");
 		CarRentalCompany obj = new CarRentalCompany(data.name, data.regions, data.cars);
 		
 		System.setSecurityManager(null);
 		
 		try {
-
-			CarRentalCompanyInterface stub = (CarRentalCompanyInterface) UnicastRemoteObject.exportObject(obj, 0);
-
-            // Bind the remote object's stub in the registry
+			CarRentalCompanyInterface carRentalCompanyStub = (CarRentalCompanyInterface) UnicastRemoteObject.exportObject(obj, 0);
             Registry registry = LocateRegistry.getRegistry();
-            
-            registry.bind("CarRentalCompanyInterface", stub);
-
-            System.err.println("Server ready");
+            registry.bind("CarRentalCompanyInterface", carRentalCompanyStub);
         } catch (Exception e) {
-            System.err.println("Server exception: " + e.toString());
+            System.err.println("Exception on server side: " + e.toString());
             e.printStackTrace();
         }
+		
 	}
 
 	public static CrcData loadData(String datafile)

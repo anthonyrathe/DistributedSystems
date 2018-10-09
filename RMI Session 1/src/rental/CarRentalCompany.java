@@ -1,6 +1,5 @@
 package rental;
 
-import java.rmi.Remote;
 import java.util.Collection;
 
 import java.util.Date;
@@ -119,6 +118,9 @@ public class CarRentalCompany implements CarRentalCompanyInterface{
 		return availableCars;
 	}
 	
+	/**
+	 * Getter for returning all cars belonging to this rental company.
+	 */
 	public List<Car> getAllCars(){
 		return cars;
 	}

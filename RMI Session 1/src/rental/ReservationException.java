@@ -2,7 +2,9 @@ package rental;
 
 public class ReservationException extends Exception {
 
-    public ReservationException(String string) {
+	private static final long serialVersionUID = -8159128964694199920L;
+
+	public ReservationException(String string) {
         super(string);
     }
 }

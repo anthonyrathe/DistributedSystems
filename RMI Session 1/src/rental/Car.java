@@ -1,12 +1,15 @@
 package rental;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Car {
+public class Car implements Serializable{
 
-    private int id;
+	private static final long serialVersionUID = 151006502569685206L;
+	
+	private int id;
     private CarType type;
     private List<Reservation> reservations;
 

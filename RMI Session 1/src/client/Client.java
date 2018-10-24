@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import rental.Car;
+import rental.CarRentalCompany;
 import rental.CarRentalCompanyInterface;
 import rental.Quote;
 import rental.Reservation;
@@ -125,6 +126,7 @@ public class Client extends AbstractTestBooking {
 			for (Reservation reservation : car.getAllReservations()){
 				if (reservation.getCarRenter().equals(clientName)){
 					reservationsByRenter.add(reservation);
+					System.out.println(reservation);
 				}
 			}
 		}
@@ -155,6 +157,5 @@ public class Client extends AbstractTestBooking {
 		}
 		
 		return numberOfReservations;
-		
 	}
 }

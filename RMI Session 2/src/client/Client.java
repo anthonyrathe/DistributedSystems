@@ -51,7 +51,7 @@ public class Client extends AbstractTestManagement<ReservationSession, ManagerSe
 
 	@Override
 	protected void checkForAvailableCarTypes(ReservationSession session, Date start, Date end) throws Exception {
-		session.checkForAvailableCarTypes(start, end);
+		session.getAvailableCarTypes(start, end);
 	}
 
 	@Override

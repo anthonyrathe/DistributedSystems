@@ -85,6 +85,16 @@ public class ManagerSession{
     	
     }
     
+    public Set<CarType> getAllCarTypes() throws RemoteException, NotBoundException {
+    	Set<CarType> carTypes = new HashSet<CarType>();
+    	for (String companyName : getAllRentalCompanies()){
+	    	Collection<CarType> types = this.getCarTypes(companyName);
+	    	carTypes.addAll(types);
+    	}
+    	return carTypes;
+    	
+    }
+    
     private CarRentalCompanyInterface getCompany(String companyName) throws AccessException, RemoteException, NotBoundException{
     	if (!this.rentalCompanies.containsKey(companyName)){
     		System.setSecurityManager(null);

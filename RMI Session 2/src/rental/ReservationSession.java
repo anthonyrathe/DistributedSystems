@@ -1,6 +1,5 @@
 package rental;
 
-import java.io.Serializable;
 import java.rmi.AccessException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -15,9 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class ReservationSession implements Serializable{
-
-	private static final long serialVersionUID = 6350765299502890039L;
+public class ReservationSession {
 	
 	private String name;
     private HashMap<Quote,CarRentalCompanyInterface> quotes = new HashMap<Quote,CarRentalCompanyInterface>();
@@ -98,7 +95,7 @@ public class ReservationSession implements Serializable{
         return this.name;
     }
 
-    public Set<CarType> checkForAvailableCarTypes(Date start, Date end) throws AccessException, RemoteException, NotBoundException {
+    public Set<CarType> getAvailableCarTypes(Date start, Date end) throws AccessException, RemoteException, NotBoundException {
         Set<CarType> availableTypes = new HashSet<CarType>();
         for (String companyName : getAllRentalCompanies()){
         	CarRentalCompanyInterface company = getCompany(companyName);
